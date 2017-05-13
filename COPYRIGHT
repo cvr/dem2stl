@@ -1,0 +1,33 @@
+
+
+COPYRIGHT and LICENSE for dem2stl.py, URL: http://github.com/cvr/dem2stl
+========================================================================
+
+
+Copyright (C) 2017 by Carlos Veiga Rodrigues. All rights reserved.
+Author:  Carlos Veiga Rodrigues <cvrodrigues@gmail.com>
+
+This program can be redistribuited and modified
+under the terms of the GNU Lesser General Public License
+as published by the Free Software Foundation,
+either version 3 of the License or any later version.
+This program is distributed WITHOUT ANY WARRANTY,
+without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE.
+For more details consult the GNU Lesser General Public License
+at http://www.gnu.org/licenses/lgpl.html.
+
+
+This script was initially based from:
+
+* phstl.py from Jim DeVona at http://github.com/anoved/phstl (MIT License)
+  from commit id 5717d88, 2016-11-09
+
+* function ComputeUTMProj4defs based on the LatLongUTMconversion.py
+  by Han Ul Yoon <hyoon24@uiuc.edu>, acessed 2017-05-12
+  http://robotics.ai.uiuc.edu/~hyoon24/LatLongUTMconversion.py
+
+
+ChangeLog (date - version - author):
+* May 2017 - 1.0 - Carlos Veiga Rodrigues
+
