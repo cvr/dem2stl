@@ -10,8 +10,7 @@ Converts a Digital Elevation Model (DEM) topography surface to the STereoLithogr
 
 ## Summary
 
-The [`dem2stl.py`](http://github.com/cvr/dem2stl) python script converts a [Digital Elevation Model (DEM)](http://en.wikipedia.org/wiki/Digital_elevation_model) (such as GeoTIFF) to a [STereoLithography (STL)]("http://en.wikipedia.org/wiki/STL_(file_format)) file.
-The result is a topography surface that may be used to generate computational grids such as those required by [`OpenFOAM`](http://openfoam.org/) meshing programs.
+The [`dem2stl.py`](http://github.com/cvr/dem2stl) python script converts a [Digital Elevation Model (DEM)](http://en.wikipedia.org/wiki/Digital_elevation_model) (such as GeoTIFF) to a [STereoLithography (STL)]("http://en.wikipedia.org/wiki/STL_(file_format)) file.  The result is a topography surface that may be used to generate computational grids such as those required by [OpenFOAM](http://openfoam.org/) meshing programs.
 
 The [`dem2stl.py`](http://github.com/cvr/dem2stl) script can cope with DEM raster files referenced to geographic coordinates (longitude and latitude), internally projecting into an UTM coordinate system using [Proj4](http://github.com/jswhit/pyproj).
 
