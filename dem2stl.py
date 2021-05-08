@@ -67,12 +67,12 @@ args = ap.parse_args()
 
 
 def fail(msg):
-    print >> sys.stderr, msg
+    print(msg, file=sys.stderr)
     exit(1)
 
 def verbose(msg):
     if args.verbose:
-        print >> sys.stderr, msg
+        print(msg, file=sys.stderr)
     return
 
 def ComputeUTMProj4defs (lon, lat):
@@ -144,7 +144,7 @@ class stlwriter():
         # track number of facets actually written
         self.written = 0
         # write binary stl header with predicted facet count
-        self.f.write('\0' * 80)
+        self.f.write(('\0' * 80).encode())
         # (facet count is little endian 4 byte unsigned int)
         self.f.write(pack('<I', facet_count))
         return
@@ -158,7 +158,7 @@ class stlwriter():
         for vertex in t:
             self.f.write(pack('<3f', *vertex))
         # facet records conclude with two null bytes (unused "attributes")
-        self.f.write('\0\0')
+        self.f.write(('\0\0').encode())
         self.written += 1
         return
     #
@@ -181,7 +181,7 @@ class stlwriter():
 ## open dataset
 try:
     ds = gdal.Open(args.RASTER)
-except RuntimeError, e:
+except RuntimeError as e:
     fail(str(e).strip())
 
 ## dataset coordinate system
@@ -223,9 +223,9 @@ if 1 == OSRds.IsProjected():
     P4xy = P4ds
     OSRxy = OSRds
     EPSGxy = EPSGds
-    print "Projected CS,  EPSG:%s" % EPSGxy
+    print("Projected CS,  EPSG:%s" % EPSGxy)
 elif 1 == OSRds.IsGeographic():
-    print "Geographic CS, EPSG:%s" % EPSGds
+    print("Geographic CS, EPSG:%s" % EPSGds)
     # i = np.arange(nx)
     # j = np.arange(ny) 
     i = np.array([0, nxm1])
@@ -241,12 +241,12 @@ elif 1 == OSRds.IsGeographic():
     if 0 == OSRxy.AutoIdentifyEPSG():
         EPSGxy = OSRxy.GetAuthorityCode(None)  # guess EPSG code
     x, y = pyproj.transform(P4ds, P4xy, lon, lat)
-    print "Projected CS,  EPSG:%s" % EPSGxy
+    print("Projected CS,  EPSG:%s" % EPSGxy)
 else:
-    print "??  Error, cannot determine Coordinate Reference System"
-    print "??  Wkt string: " + ds.GetProjection()
-    print "??  Proj4 definitions: " + P4ds.srs
-    print "??  EPSG:%s" % EPSGds
+    print("??  Error, cannot determine Coordinate Reference System")
+    print("??  Wkt string: " + ds.GetProjection())
+    print("??  Proj4 definitions: " + P4ds.srs)
+    print("??  EPSG:%s" % EPSGds)
     fail("Aborting")
 
 verbose("xmin, xmax = %g m, %g m" % (np.min(x), np.max(x)))
@@ -303,12 +303,12 @@ verbose("predicted (max) STL file size = %s bytes" % str(filesize))
 
 i0, j0 = 0, 0
 with stlwriter(args.STL, facetcount) as mesh:
-    for j in xrange(nym1):
+    for j in range(nym1):
         ## each row, extend pixel buffer with the next row of data
         ## from the image window
         pixels.extend(unpack(rowformat, \
             band.ReadRaster(i0, j0 + j + 1, nx, 1, nx, 1, band.DataType)))
-        for i in xrange(nxm1):
+        for i in range(nxm1):
             ## z values of this pixel (a) and its neighbors (b, c and d)
             av = pixels[i]
             bv = pixels[nx + i]
